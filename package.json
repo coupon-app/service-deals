@@ -6,16 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
-    "build": "webpack -d -w"
+    "build": "webpack -d -w",
+    "seed": "cd db/ && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all || npm run fallback",
+    "fallback": "cd db/ && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "author": "benkidder",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "faker": "^4.1.0",
-    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "sequelize": "^5.21.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
@@ -28,6 +31,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "sequelize-cli": "^5.5.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   }
