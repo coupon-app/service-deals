@@ -1,16 +1,16 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Package = sequelize.define('Package', {
+  const packages = sequelize.define('packages', {
     endDate: DataTypes.DATE,
     views: DataTypes.INTEGER,
     ratings: DataTypes.INTEGER,
     rateAvg: DataTypes.DECIMAL(6, 2),
     onSale: DataTypes.BOOLEAN,
   }, {});
-  Package.associate = function (models) {
+  packages.associate = function (models) {
     // associations can be defined here
-    Package.hasMany(models.Deal);
+    packages.hasMany(models.deals);
   };
-  return Package;
+  return packages;
 };
