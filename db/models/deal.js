@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Deal = sequelize.define('Deal', {
+  const deals = sequelize.define('deals', {
     title: DataTypes.STRING,
     msrp: DataTypes.INTEGER(6, 2),
     salePrice: DataTypes.INTEGER(6, 2),
@@ -9,11 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     bought: DataTypes.INTEGER,
     allowed: DataTypes.INTEGER,
     soldOut: DataTypes.BOOLEAN,
-    percent: DataTypes.INTEGER,
+    salePercent: DataTypes.INTEGER,
+    extraPercent: DataTypes.INTEGER,
+    packageId: DataTypes.INTEGER,
   }, {});
-  Deal.associate = function (models) {
+  deals.associate = function (models) {
     // associations can be defined here
-    Deal.belongsTo(models.Coffee);
+    deals.belongsTo(models.packages);
   };
-  return Deal;
+  return deals;
 };
