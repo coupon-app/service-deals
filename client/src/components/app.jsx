@@ -1,6 +1,6 @@
-const React = require('react');
-const $ = require('jquery');
-const { Deals } = require('./deals.jsx');
+import React from 'react';
+import $ from 'jquery';
+import Deals from './deals';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +20,8 @@ class App extends React.Component {
       success: (packageDeal) => {
         const Package = packageDeal.packageData[0];
         const deals = packageDeal.dealData[0];
-        this.setState({ Package, deals, selectedOption: deals[0].title });
+        const selectedOption = deals[0].title;
+        this.setState({ Package, deals, selectedOption });
       },
     });
   }
@@ -42,10 +43,10 @@ class App extends React.Component {
             deals={deals}
             key={Package.id}
           />
-          <input type="submit" value="Buy" />
-          <br />
-          <input type="submit" value="Give as a Gift" />
         </form>
+        <button type="button">Buy</button>
+        <br />
+        <button type="button">Give as a Gift</button>
       </div>
     );
   }
