@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app';
+import Checkout from './components/checkout';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<Checkout />, document.getElementById('checkout'));

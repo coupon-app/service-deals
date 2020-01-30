@@ -1,19 +1,20 @@
 import React from 'react';
 import Deal from './deal';
 
-const Deals = (props) => (
-  props.deals.map((deal, i) => {
-    const key = i + 1;
-    return (
-      <div key={key}>
+const Deals = ({ deals, onChange, selectedOption }) => (
+  <form>
+    {deals.map((deal, i) => {
+      const key = i + 1;
+      return (
         <Deal
+          key={key}
           deal={deal}
-          onChange={props.onChange}
-          selectedOption={props.selectedOption}
+          onChange={onChange}
+          selectedOption={selectedOption}
         />
-      </div>
-    );
-  })
+      );
+    })}
+  </form>
 );
 
 export default Deals;
