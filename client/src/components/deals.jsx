@@ -1,38 +1,19 @@
-const React = require('react');
-// const styled = require('styled-components');
-// const Deal = require('./deal.jsx');
+import React from 'react';
+import Deal from './deal';
 
 const Deals = (props) => (
-  // const labelWrapper =styled.label `
-  //   border
-  // `;
-  props.deals.map((deal) => (
-    <div key={deal.id}>
-      <label>
-        <input
-          id={deal.id}
-          type="radio"
-          name="packageDeals"
-          value={deal.title}
+  props.deals.map((deal, i) => {
+    const key = i + 1;
+    return (
+      <div key={key}>
+        <Deal
+          deal={deal}
           onChange={props.onChange}
-          checked={props.selectedOption === `${deal.title}`}
+          selectedOption={props.selectedOption}
         />
-        {deal.title}
-        <p>
-          <span>
-            {'$' + deal.msrp}
-          </span>
-          <span>
-            {' $' + deal.salePrice}
-          </span>
-        </p>
-        <p>
-          <span>{deal.bought + '+ bought '}</span>
-          <span>{deal.salePercent + '% OFF'}</span>
-        </p>
-      </label>
-    </div>
-  ))
+      </div>
+    );
+  })
 );
 
-module.exports = { Deals };
+export default Deals;
