@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watch --coverage --colors",
     "test:coverage": "jest --coverage --colors",
     "start": "nodemon server",
     "build": "webpack -d -w",
