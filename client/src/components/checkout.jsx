@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import Deals from './deals';
 
-class App extends React.Component {
+class Checkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,10 +16,12 @@ class App extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:3000/api/checkout/4',
+      url: 'http://localhost:3000/api/checkout/2',
       success: (packageDeal) => {
         const Package = packageDeal.packageData[0];
+        console.log(Package);
         const deals = packageDeal.dealData[0];
+        console.log(deals);
         const selectedOption = deals[0].title;
         this.setState({ Package, deals, selectedOption });
       },
@@ -36,14 +38,13 @@ class App extends React.Component {
     const { Package, deals, selectedOption } = this.state;
     return (
       <div>
-        <form>
-          <Deals
-            onChange={this.onChange}
-            selectedOption={selectedOption}
-            deals={deals}
-            key={Package.id}
-          />
-        </form>
+        <Deals
+          onChange={this.onChange}
+          onSale={Package.onSale}
+          selectedOption={selectedOption}
+          deals={deals}
+          key={Package.id}
+        />
         <button type="button">Buy</button>
         <br />
         <button type="button">Give as a Gift</button>
@@ -52,4 +53,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Checkout;
