@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Price from './price';
 
-const Deal = ({ deal, onChange, selectedOption, onSale }) => (
-  <LabelWrap>
+const Deal = ({ deal, onChange, selectedOption, onSale }) => {
+  return deal.soldOut ? (
+  <LabelWrap soldOut={deal.soldOut}>
     <DealTitleWrap>{deal.title}</DealTitleWrap>
-    <CustomRadio checked={selectedOption === `${deal.title}`} />
+    <SoldOutRadio />
     <InputWrap
       id={deal.id}
       type="radio"
@@ -13,37 +14,59 @@ const Deal = ({ deal, onChange, selectedOption, onSale }) => (
       value={deal.title}
       onChange={onChange}
     />
-    {onSale ? (
-      <PriceWrap>
-        <MSRPWrap>
-          <Price value={deal.msrp} />
-        </MSRPWrap>
-        <SaleWrap onSale={onSale}>
-          <Price value={deal.salePrice} />
-        </SaleWrap>
-        <br />
-        <EPWrap>
-          <Price value={deal.extraPrice} />
-        </EPWrap>
-      </PriceWrap>
-
-    ) : (
-      <PriceWrap>
-        <MSRPWrap>
-          <Price value={deal.msrp} />
-        </MSRPWrap>
-        <SaleWrap>
-          <Price value={deal.salePrice} />
-        </SaleWrap>
-      </PriceWrap>
-    )}
+    <PriceWrap>
+      <MSRPWrap>
+        <Price value={deal.msrp} />
+      </MSRPWrap>
+    </PriceWrap>
     <BottomMetaWrap>
       <BoughtWrap>{deal.bought + '+ bought'}</BoughtWrap>
-      <PercentWrap onSale={onSale}>{onSale ? deal.extraPercent + '% OFF' : deal.salePercent + '% OFF'}</PercentWrap>
+      <SoldOutWrap>Sold Out</SoldOutWrap>
     </BottomMetaWrap>
-    <br />
   </LabelWrap>
-);
+  ) : (
+    <LabelWrap>
+      <DealTitleWrap>{deal.title}</DealTitleWrap>
+      <CustomRadio checked={selectedOption === `${deal.title}`} />
+      <InputWrap
+        id={deal.id}
+        type="radio"
+        name="packageDeals"
+        value={deal.title}
+        onChange={onChange}
+      />
+      {onSale ? (
+        <PriceWrap>
+          <MSRPWrap>
+            <Price value={deal.msrp} />
+          </MSRPWrap>
+          <SaleWrap onSale={onSale}>
+            <Price value={deal.salePrice} />
+          </SaleWrap>
+          <br />
+          <EPWrap>
+            <Price value={deal.extraPrice} />
+          </EPWrap>
+        </PriceWrap>
+
+      ) : (
+        <PriceWrap>
+          <MSRPWrap>
+            <Price value={deal.msrp} />
+          </MSRPWrap>
+          <SaleWrap>
+            <Price value={deal.salePrice} />
+          </SaleWrap>
+        </PriceWrap>
+      )}
+      <BottomMetaWrap>
+        <BoughtWrap>{deal.bought + '+ bought'}</BoughtWrap>
+        <PercentWrap onSale={onSale}>{onSale ? deal.extraPercent + '% OFF' : deal.salePercent + '% OFF'}</PercentWrap>
+      </BottomMetaWrap>
+      <br />
+    </LabelWrap>
+  );
+};
 
 const LabelWrap = styled.label`
   width: 310px;
@@ -53,7 +76,7 @@ const LabelWrap = styled.label`
   padding-left: 30px;
   margin-bottom: 10px;
   border-bottom: 1px solid #e6e7e8;
-  cursor: pointer;
+  cursor: ${props => props.soldOut ? "default" : "pointer"};
 `;
 
 const DealWrap = styled.div`
@@ -82,7 +105,6 @@ const InputWrap = styled.input`
   width: 0;
   height: 0;
   position: relative;
-  cursor: pointer;
 `;
 
 const CustomRadio = styled.span`
@@ -92,7 +114,7 @@ const CustomRadio = styled.span`
   top: 10px;
   left: 0px;
   background: white;
-  border: ${props => props.checked ? "2px solid #0076d6" : "2px solid #AAA"};
+  border: ${props => props.checked ? "2px solid #0076d6" : "2px solid #d3d3d3"};
   border-radius: 50%;
   &::after {
     content: '';
@@ -105,6 +127,17 @@ const CustomRadio = styled.span`
     border-radius: 50%;
     display: ${props => props.checked ? "block" : "none"};
   }
+`;
+
+const SoldOutRadio = styled.span`
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  background: #f7f7f7;
+  border: 2px solid #d3d3d3;
+  border-radius: 50%;
 `;
 
 const PriceWrap = styled(DealWrap)`
@@ -176,11 +209,17 @@ const PercentWrap = styled(DealWrap)`
   font-weight: 440;
   text-align: center;
   letter-spacing: 0;
-  color: ${props => props.onSale ? "rgb(255, 0, 0)" : "rgb(52, 135, 0)"};
+  color: ${props => props.onSale ? "rgb(255, 10, 0)" : "rgb(52, 135, 0)"};
   background-color: ${props => props.onSale ? "rgb(255, 210, 210)" : "rgb(234, 252, 222)"};
   padding: 4px 8px 8px 8px;
   margin-top: 2px;
   border-radius: 5px;
+`;
+
+const SoldOutWrap = styled(DealWrap)`
+  color: rgb(230, 0, 0);
+  font-weight: 475;
+  font-size: 18px;
 `;
 
 

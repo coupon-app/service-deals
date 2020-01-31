@@ -16,7 +16,7 @@ class Checkout extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:3000/api/checkout/4',
+      url: 'http://localhost:3000/api/checkout/7',
       success: (packageDeal) => {
         const Package = packageDeal.packageData[0];
         console.log(Package);
