@@ -46,102 +46,91 @@ const Deal = ({ deal, onChange, selectedOption, onSale }) => (
 );
 
 const LabelWrap = styled.label`
-  display: block;
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 10px;
-  cursor: pointer;
   width: 310px;
   height: 100px;
-  border-bottom: 1px solid #e6e7e8;
-`;
-
-const DealTitleWrap = styled.div`
-  font-family: Open Sans,OpenSans,system,-apple-system,BlinkMacSystemFont,Roboto,Arial,FreeSans,sans-serif;
-  color: black;
-  font-size: 15px;
-  font-weight: 430;
   position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-content: stretch;
-  top: 0px;
-  left: 2px;
-  padding: 2px;
-  letter-spacing: 0.05rem;
+  display: block;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e6e7e8;
+  cursor: pointer;
 `;
 
 const DealWrap = styled.div`
   font-family: Open Sans,OpenSans,system,-apple-system,BlinkMacSystemFont,Roboto,Arial,FreeSans,sans-serif;
-  color: black;
-  font-size: 15px;
-  font-weight: 430;
   position: relative;
+  top: 5px;
+  left: 0px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-content: stretch;
-  top: 5px;
-  left: 0px;
-  padding: 2px;
+  color: black;
+  font-size: 15px;
+  font-weight: 430;
   letter-spacing: 0.05rem;
+  padding: 2px;
+`;
+
+const DealTitleWrap = styled(DealWrap)`
+  top: 0px;
+  left: 2px;
 `;
 
 const InputWrap = styled.input`
-  position: relative;
   opacity: 0;
-  cursor: pointer;
-  height: 0;
   width: 0;
+  height: 0;
+  position: relative;
+  cursor: pointer;
 `;
 
 const CustomRadio = styled.span`
+  width: 17px;
+  height: 17px;
   position: absolute;
   top: 10px;
   left: 0px;
-  height: 17px;
-  width: 17px;
-  border: ${props => props.checked ? "2px solid #0076d6" : "2px solid #AAA"};
   background: white;
+  border: ${props => props.checked ? "2px solid #0076d6" : "2px solid #AAA"};
   border-radius: 50%;
   &::after {
     content: '';
+    height: 11px;
+    width: 11px;
     position: absolute;
-    display: ${props => props.checked ? "block" : "none"};
     top: 3px;
     left: 3px;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
     background: #0076d6;
+    border-radius: 50%;
+    display: ${props => props.checked ? "block" : "none"};
   }
 `;
 
 const PriceWrap = styled(DealWrap)`
-  height: auto;
   width: auto;
-  font-size: 17px;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: baseline;
+  font-size: 17px;
   font-weight: 400;
   text-align: center;
+  letter-spacing: 0;
   padding: 0px;
   padding-top: 3px;
   margin-bottom: 1px;
-  letter-spacing: 0;
 `;
 
 const MSRPWrap = styled(PriceWrap)`
   width: 22%;
-  color: gray;
-  font-weight: 300;
   font-size: 15px;
+  font-weight: 300;
+  color: gray;
   text-decoration: line-through;
-  padding: 0px;
   letter-spacing: 0.03rem;
+  padding: 0px;
 `;
 
 const SaleWrap = styled(PriceWrap)`
@@ -149,49 +138,49 @@ const SaleWrap = styled(PriceWrap)`
   font-weight: 430;
   color: rgb(52, 135, 0);
   text-decoration: ${props => props.onSale ? "line-through" : "initial"};
+  letter-spacing: 0;
   padding: 0px;
   padding-left: 4px;
-  letter-spacing: 0;
 `;
 
 
 const EPWrap = styled(PriceWrap)`
   width: 22%;
   color: rgb(255, 0, 0);
-  padding: 0px;
   letter-spacing: 0;
+  padding: 0px;
 `;
 
 const BottomMetaWrap = styled(DealWrap)`
   justify-content: space-between;
-  padding: 0px;
   letter-spacing: 0;
+  padding: 0px;
 `;
 
 const BoughtWrap = styled(DealWrap)`
-  color: gray;
-  font-weight: 300;
+  top: 14px;
+  left: 2px;
   font-size: 12px;
+  font-weight: 300;
+  color: gray;
   letter-spacing: 0px;
   padding: 0px;
   margin: 0px;
-  top: 14px;
-  left: 2px;
 `;
 
 const PercentWrap = styled(DealWrap)`
-  color: ${props => props.onSale ? "rgb(255, 0, 0)" : "rgb(52, 135, 0)"};
-  background-color: ${props => props.onSale ? "rgb(255, 210, 210)" : "rgb(234, 252, 222)"};
-  border-radius: 5px;
-  text-align: center;
+  width: 50px;
+  height: 12px;
   display: inline-block;
   font-size: 12px;
   font-weight: 440;
-  width: 50px;
-  height: 12px;
-  padding: 4px 8px 8px 8px;
+  text-align: center;
   letter-spacing: 0;
+  color: ${props => props.onSale ? "rgb(255, 0, 0)" : "rgb(52, 135, 0)"};
+  background-color: ${props => props.onSale ? "rgb(255, 210, 210)" : "rgb(234, 252, 222)"};
+  padding: 4px 8px 8px 8px;
   margin-top: 2px;
+  border-radius: 5px;
 `;
 
 
