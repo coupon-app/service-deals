@@ -17,7 +17,7 @@ class Checkout extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:3000/api/checkout/9',
+      url: `http://localhost:3003/api/checkout/${Math.ceil(Math.random() * 100)}`,
       success: (packageDeal) => {
         const Package = packageDeal.packageData[0];
         console.log(Package);

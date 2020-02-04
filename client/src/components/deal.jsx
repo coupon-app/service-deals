@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Deal = ({ deal, onChange, selectedOption, onSale, dealEnd }) => {
+  const timeDate = new Date(dealEnd);
+  const date = timeDate.getDate();
+  const month = timeDate.getMonth();
+  const msrp = '$' + Math.trunc(deal.msrp);
+  const salePrice = '$' + Math.trunc(deal.salePrice);
+
   return deal.soldOut ? (
     <LabelWrap soldOut={deal.soldOut}>
       <TitleWrap>
@@ -14,7 +20,7 @@ const Deal = ({ deal, onChange, selectedOption, onSale, dealEnd }) => {
           value={deal.title}
         />
       </TitleWrap>
-      <MSRPWrap>{'$' + Math.trunc(deal.msrp)}</MSRPWrap>
+      <MSRPWrap>{msrp}</MSRPWrap>
       <BottomMetaWrap buys={deal.bought} soldOut={deal.soldOut}>
         <BoughtWrap>{deal.allowed + '+ bought'}</BoughtWrap>
         <SoldOutWrap>Sold Out</SoldOutWrap>
@@ -36,18 +42,18 @@ const Deal = ({ deal, onChange, selectedOption, onSale, dealEnd }) => {
       {onSale ? (
         <div>
           <PriceWrap>
-            <MSRPWrap>{'$' + Math.trunc(deal.msrp)}</MSRPWrap>
-            <SaleWrap onSale={onSale}>{'$' + Math.trunc(deal.salePrice)}</SaleWrap>
+            <MSRPWrap>{msrp}</MSRPWrap>
+            <SaleWrap onSale={onSale}>{salePrice}</SaleWrap>
           </PriceWrap>
           <PriceWrap>
-            <PriceDiffWrap>{'Extra $' + Math.trunc(deal.salePrice - deal.extraPrice) + ' Off Ends ' + dealEnd[6] + '/' + dealEnd[9]}</PriceDiffWrap>
+            <PriceDiffWrap>{'Extra $' + Math.trunc(deal.salePrice - deal.extraPrice) + ' Off Ends ' + month + '/' + date}</PriceDiffWrap>
             <ExSaleWrap>{'$' + Math.trunc(deal.extraPrice)}</ExSaleWrap>
           </PriceWrap>
         </div>
       ) : (
         <PriceWrap>
-          <MSRPWrap>{'$' + Math.trunc(deal.msrp)}</MSRPWrap>
-          <SaleWrap>{'$' + Math.trunc(deal.salePrice)}</SaleWrap>
+          <MSRPWrap>{msrp}</MSRPWrap>
+          <SaleWrap>{salePrice}</SaleWrap>
         </PriceWrap>
       )}
       <BottomMetaWrap buys={deal.bought}>
@@ -88,7 +94,7 @@ const DealTitleWrap = styled.div`
 
 
 const InputWrap = styled.input`
-  position: absolute;
+  position: relative;
   opacity: 0;
 `;
 
@@ -105,7 +111,7 @@ const CustomRadio = styled.span`
     content: '';
     height: 11px;
     width: 11px;
-    position: absolute;
+    position: relative;
     top: 3px;
     left: 3px;
     background: #0076d6;
