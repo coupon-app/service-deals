@@ -3,7 +3,7 @@ const path = require('path');
 const db = require('../db/index.js');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3003;
 const dir = path.resolve(__dirname, '..', 'client', 'public');
 
 app.use(express.json());

@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import styled from 'styled-components';
 import Deals from './deals';
 
 class Checkout extends React.Component {
@@ -16,13 +17,19 @@ class Checkout extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:3000/api/checkout/4',
+      url: `http://localhost:3003/api/checkout/${Math.ceil(Math.random() * 100)}`,
       success: (packageDeal) => {
         const Package = packageDeal.packageData[0];
         console.log(Package);
         const deals = packageDeal.dealData[0];
         console.log(deals);
-        const selectedOption = deals[0].title;
+        let selectedOption;
+        for (let i = 0; i < deals.length; i += 1) {
+          if (!deals[i].soldOut) {
+            selectedOption = deals[i].title;
+            break;
+          }
+        }
         this.setState({ Package, deals, selectedOption });
       },
     });
@@ -43,14 +50,29 @@ class Checkout extends React.Component {
           onSale={Package.onSale}
           selectedOption={selectedOption}
           deals={deals}
+          dealEnd={Package.endDate}
           key={Package.id}
         />
-        <button type="button">Buy</button>
-        <br />
-        <button type="button">Give as a Gift</button>
+        <BuyWrap type="button">Buy</BuyWrap>
       </div>
     );
   }
 }
+
+const BuyWrap = styled.button`
+  width: 350px;
+  height: 40px;
+  font-size: 17px;
+  color: white;
+  text-align: center;
+  background-color: rgb(78, 163, 0);
+  border-radius: 4px;
+  border: 1px solid rgb(53, 163, 0);
+  margin-top: 4px;
+  letter-spacing: 0.05rem;
+  &:hover {
+    background-color: rgb(53, 133, 0);
+  }
+`;
 
 export default Checkout;

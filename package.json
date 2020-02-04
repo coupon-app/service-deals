@@ -7,8 +7,8 @@
     "test": "jest",
     "test:watch": "jest --watch --coverage --colors",
     "test:coverage": "jest --coverage --colors",
-    "start": "nodemon server",
-    "build": "webpack -d -w",
+    "startcheckout": "nodemon server",
+    "buildcheckout": "webpack -d -w",
     "seed": "cd db/ && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all || npm run fallback",
     "fallback": "cd db/ && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
     "jest": {
