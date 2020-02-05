@@ -7,10 +7,12 @@
     "test": "jest",
     "test:watch": "jest --watch --coverage --colors",
     "test:coverage": "jest --coverage --colors",
-    "startcheckout": "nodemon server",
-    "buildcheckout": "webpack -d -w",
+    "startcheckout": "node server",
+    "buildcheckout": "webpack -d",
     "seed": "cd db/ && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all || npm run fallback",
     "fallback": "cd db/ && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "start-dev": "nodemon server",
+    "build-dev": "webpack -d -w",
     "jest": {
       "transform": {
         "^.+\\.jsx?$": "babel-jest"
@@ -20,6 +22,7 @@
   "author": "benkidder",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "jest-styled-components": "^7.0.0",

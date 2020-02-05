@@ -1,11 +1,13 @@
-const express = require('express');
-const path = require('path');
-const db = require('../db/index.js');
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import db from '../db';
 
 const app = express();
 const PORT = process.env.PORT || 3003;
 const dir = path.resolve(__dirname, '..', 'client', 'public');
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(dir));
