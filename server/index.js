@@ -1,7 +1,7 @@
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
-import db from '../db';
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const db = require('../db');
 
 const app = express();
 const PORT = process.env.PORT || 3003;
