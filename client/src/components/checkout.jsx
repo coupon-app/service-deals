@@ -47,7 +47,7 @@ class Checkout extends React.Component {
       <div>
         <Deals
           onChange={this.onChange}
-          onSale={Package.onSale}
+          sale={Package.onSale}
           selectedOption={selectedOption}
           deals={deals}
           dealEnd={Package.endDate}

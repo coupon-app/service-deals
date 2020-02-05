@@ -1,7 +1,7 @@
 import React from 'react';
 import Deal from './deal';
 
-const Deals = ({ deals, onChange, selectedOption, onSale, dealEnd }) => {
+const Deals = ({ deals, onChange, selectedOption, sale, dealEnd }) => {
   return (
   <form>
     {deals.map((deal) => (
@@ -9,7 +9,7 @@ const Deals = ({ deals, onChange, selectedOption, onSale, dealEnd }) => {
         key={deal.id}
         deal={deal}
         onChange={onChange}
-        onSale={onSale}
+        sale={sale}
         dealEnd={dealEnd}
         selectedOption={selectedOption}
       />

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Deal = ({ deal, onChange, selectedOption, onSale, dealEnd }) => {
+const Deal = ({ deal, onChange, selectedOption, sale, dealEnd }) => {
   const timeDate = new Date(dealEnd);
   const date = timeDate.getDate();
   const month = timeDate.getMonth();
@@ -39,11 +39,11 @@ const Deal = ({ deal, onChange, selectedOption, onSale, dealEnd }) => {
           onChange={onChange}
         />
       </TitleWrap>
-      {onSale ? (
+      {sale ? (
         <div>
           <PriceWrap>
             <MSRPWrap>{msrp}</MSRPWrap>
-            <SaleWrap onSale={onSale}>{salePrice}</SaleWrap>
+            <SaleWrap sale={sale}>{salePrice}</SaleWrap>
           </PriceWrap>
           <PriceWrap>
             <PriceDiffWrap>{'Extra $' + Math.trunc(deal.salePrice - deal.extraPrice) + ' Off Ends ' + month + '/' + date}</PriceDiffWrap>
@@ -58,7 +58,7 @@ const Deal = ({ deal, onChange, selectedOption, onSale, dealEnd }) => {
       )}
       <BottomMetaWrap buys={deal.bought}>
         {deal.bought ? <BoughtWrap>{deal.bought + '+ bought'}</BoughtWrap> : null}
-        <PercentWrap onSale={onSale}>{onSale ? deal.extraPercent + '% OFF' : deal.salePercent + '% OFF'}</PercentWrap>
+        <PercentWrap sale={sale}>{sale ? deal.extraPercent + '% OFF' : deal.salePercent + '% OFF'}</PercentWrap>
       </BottomMetaWrap>
     </LabelWrap>
   );
@@ -152,7 +152,7 @@ const MSRPWrap = styled(PriceWrap)`
 const SaleWrap = styled(PriceWrap)`
   font-weight: 430;
   color: rgb(52, 135, 0);
-  text-decoration: ${(props) => (props.onSale ? 'line-through' : 'initial')};
+  text-decoration: ${(props) => (props.sale ? 'line-through' : 'initial')};
   margin-left: 5px;
 `;
 
@@ -167,7 +167,7 @@ const PriceDiffWrap = styled.div`
 
 const ExSaleWrap = styled.div`
   color: #F0001E;
-  text-decoration: ${(props) => (props.onSale ? 'line-through' : 'initial')};
+  text-decoration: ${(props) => (props.sale ? 'line-through' : 'initial')};
   margin-left: 5px;
 `;
 
@@ -192,8 +192,8 @@ const BoughtWrap = styled.div`
 const PercentWrap = styled.div`
   font-size: 12px;
   font-weight: 455;
-  color: ${(props) => (props.onSale ? '#F0001E' : '#40A500')};
-  background-color: ${(props) => (props.onSale ? '#FFF5F5' : '#EAFCDE')};
+  color: ${(props) => (props.sale ? '#F0001E' : '#40A500')};
+  background-color: ${(props) => (props.sale ? '#FFF5F5' : '#EAFCDE')};
   padding: 3px 10px;
   margin-bottom: 5px;
   border-radius: 5px;
