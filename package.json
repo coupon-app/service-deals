@@ -1,12 +1,13 @@
 {
   "name": "deal-checkout",
   "version": "1.0.0",
-  "description": "Deal/Checkout modal for coupon app",
+  "description": "Deal/Checkout module for coupon app",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch --coverage --colors",
     "test:coverage": "jest --coverage --colors",
+    "start": "npm run seed && npm run buildcheckout && npm run startcheckout",
     "startcheckout": "node server",
     "buildcheckout": "webpack -d",
     "seed": "cd db/ && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all || npm run fallback",
