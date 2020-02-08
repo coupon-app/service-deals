@@ -1,3 +1,4 @@
+const compression = require('compression');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -7,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3003;
 const dir = path.resolve(__dirname, '..', 'client', 'public');
 
+app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
