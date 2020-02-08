@@ -7,13 +7,13 @@
     "test": "jest",
     "test:watch": "jest --watch --coverage --colors",
     "test:coverage": "jest --coverage --colors",
-    "start": "npm run seed && npm run buildcheckout && npm run startcheckout",
+    "start": "npm run buildcheckout && npm run startcheckout",
     "startcheckout": "node server",
-    "buildcheckout": "webpack -d",
+    "buildcheckout": "webpack --config webpack.prod.js",
     "seed": "cd db/ && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all || npm run fallback",
     "fallback": "cd db/ && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
     "start-dev": "nodemon server",
-    "build-dev": "webpack -d -w",
+    "build-dev": "webpack --config webpack.dev.js",
     "jest": {
       "transform": {
         "^.+\\.jsx?$": "babel-jest"
@@ -25,10 +25,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "faker": "^4.1.0",
-    "jest-styled-components": "^7.0.0",
     "jquery": "^3.4.1",
-    "mysql2": "^2.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "sequelize": "^5.21.3",
@@ -49,11 +46,15 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "faker": "^4.1.0",
     "jest": "^25.1.0",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
+    "jest-styled-components": "^7.0.0",
+    "mysql2": "^2.1.0",
     "sequelize-cli": "^5.5.1",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
   }
 }

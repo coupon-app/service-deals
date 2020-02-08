@@ -1,6 +1,7 @@
 'use strict';
 
-const faker = require('faker');
+const { between } = require('faker').date;
+const { number, boolean } = require('faker').random;
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -13,11 +14,11 @@ module.exports = {
       later.setDate(later.getDate() + 30);
 
       data.push({
-        endDate: faker.date.between(now, later),
+        endDate: between(now, later),
         views: Math.ceil(Math.random() * 300) * 10,
-        ratings: faker.random.number(9000) + 1,
+        ratings: number(9000) + 1,
         rateAvg: Math.floor(Math.random() * 5) + 0.5,
-        onSale: faker.random.boolean(),
+        onSale: boolean(),
         createdAt: now,
         updatedAt: now,
       });
