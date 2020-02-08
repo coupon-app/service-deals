@@ -1,8 +1,7 @@
 import React from 'react';
 import Deal from './deal';
 
-const Deals = ({ deals, onChange, selectedOption, sale, dealEnd }) => {
-  return (
+const Deals = ({ deals, onChange, selectedOption, sale, dealEnd }) => (
   <form>
     {deals.map((deal) => (
       <Deal
@@ -16,6 +15,5 @@ const Deals = ({ deals, onChange, selectedOption, sale, dealEnd }) => {
     ))}
   </form>
 );
-};
 
 export default Deals;

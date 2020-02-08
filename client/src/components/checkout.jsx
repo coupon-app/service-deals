@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import { ajax } from 'jquery';
 import styled from 'styled-components';
 import Deals from './deals';
 
@@ -15,14 +15,12 @@ class Checkout extends React.Component {
   }
 
   componentDidMount() {
-    $.ajax({
+    ajax({
       method: 'GET',
       url: `/api/checkout/${Math.ceil(Math.random() * 100)}`,
       success: (packageDeal) => {
         const Package = packageDeal.packageData[0];
-        console.log(Package);
         const deals = packageDeal.dealData[0];
-        console.log(deals);
         let selectedOption;
         for (let i = 0; i < deals.length; i += 1) {
           if (!deals[i].soldOut) {
